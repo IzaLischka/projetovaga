@@ -1,0 +1,42 @@
+version: "3.8"
+#serviço do go
+services:
+  app:
+    build: .
+    depends_on:
+      - db
+    networks: 
+      - neoway
+#serviço pgadmin web
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_ON_DEMAND_RECORD_COUNT: 100000
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+    networks:
+      - neoway
+    restart: unless-stopped
+#sobe o serviço do banco
+  db: 
+    image: postgres:alpine
+    container_name: db_postgres
+    restart: on-failure
+    environment:
+      POSTGRES_DB: mybb
+      POSTGRES_USER: mybb
+      POSTGRES_PASSWORD: changeme
+      DATABASE_HOST: db
+    ports:
+      - '5432:5432'
+    networks: 
+      - neoway
+
+networks:
+  neoway:
+    driver: bridge
