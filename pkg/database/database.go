@@ -52,6 +52,14 @@ func OpenDB(database string) (*sql.DB) {
     checkError(err)
     fmt.Println("Finished creating table: " + database)
 
+    _, err = db.Exec("CREATE INDEX index_lastbuystore ON " + database + " USING hash(lastbuystore);")
+    checkError(err)
+    fmt.Println("Created index index_lastbuystore")
+
+    _, err = db.Exec("CREATE INDEX index_oftenstore ON " + database + " USING hash(oftenstore);")
+    checkError(err)
+    fmt.Println("Created index index_oftenstore")
+
     return db
 }
 // insert na tabela os valores das colunas e seus valores.
