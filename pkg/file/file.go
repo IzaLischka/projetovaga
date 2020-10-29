@@ -16,6 +16,7 @@ func Read(path string, callback callbackType) {
 	}
 	defer file.Close()
 
+	//contador no terminal da leitura e insert dos itens
 	scanner := bufio.NewScanner(file)
 	counter := 0
 	for scanner.Scan() {

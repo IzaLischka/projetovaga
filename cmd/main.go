@@ -10,7 +10,7 @@ import "app/pkg/database"
 
 type callbackType func(string)
 
-//Le uma linha por vez do arquivo  e joga pro Read
+//Le uma linha por vez do arquivo  e grava no banco
 func process(db *sql.DB) func(value string) {
     return func(value string) {      
         var extracted extract.Item
@@ -18,7 +18,7 @@ func process(db *sql.DB) func(value string) {
         database.Insert(db, extracted)
     }
 }
-//Pega o retorno no process dentro do txt e grava no banco
+//Le o txt, e roda a func process
 func main() {
     var db = database.OpenDB("report");
     file.Read("text.txt", process(db))
