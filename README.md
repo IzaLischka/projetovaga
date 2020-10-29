@@ -34,7 +34,7 @@ Steps
 
 * Create table
 
-sql
+```sql
 ("CREATE TABLE " + database + `
         (
             id serial PRIMARY KEY, 
@@ -49,17 +49,18 @@ sql
             loja_mais_frequente_valida VARCHAR(50), 
             loja_ultima_compra VARCHAR(50),
             loja_ultima_compra_valida VARCHAR(50));`)
-
+```
 
 * Create index 
 
-sql
+```sql
 "CREATE INDEX index_loja_mais_frequente ON " + table + " USING hash(loja_mais_frequente);
 "CREATE INDEX index_loja_ultima_compra ON " + table + " USING hash(loja_ultima_compra );
-
+```
 
 * Inserts
-sql
+
+```sql
 `INSERT INTO report 
   (
 		cpf
@@ -73,7 +74,7 @@ sql
 		loja_mais_frequente_valida
 		loja_ultima_compra
 		loja_ultima_compra_valida);` 
-
+```
 
 ## Libraries
 
