@@ -2,7 +2,7 @@
 
 ## Instruction
 
-`docker-compose build && docker-compose`
+`docker-compose build && docker-compose up`
 
 ## Usage
 
