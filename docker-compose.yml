@@ -12,8 +12,8 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin_container
     environment:
-      PGADMIN_DEFAULT_EMAIL: test@test.com
-      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_DEFAULT_EMAIL: testevaga@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: testevaga
       PGADMIN_CONFIG_ON_DEMAND_RECORD_COUNT: 100000
     depends_on:
       - db
@@ -28,9 +28,9 @@ services:
     container_name: db_postgres
     restart: on-failure
     environment:
-      POSTGRES_DB: mybb
-      POSTGRES_USER: mybb
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: info
+      POSTGRES_USER: iza
+      POSTGRES_PASSWORD: testevaga
       DATABASE_HOST: db
     ports:
       - '5432:5432'

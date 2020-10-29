@@ -2,7 +2,6 @@ package main
 
 import (
     "database/sql"
-    "fmt"
 )
 
 import "app/pkg/file"
@@ -21,7 +20,6 @@ func process(db *sql.DB) func(value string) {
 }
 //Pega o retorno no process dentro do txt e grava no banco
 func main() {
-    fmt.Println("Hello World")
     var db = database.OpenDB("report");
     file.Read("text.txt", process(db))
 }
