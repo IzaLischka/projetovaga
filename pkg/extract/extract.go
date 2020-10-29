@@ -3,6 +3,8 @@ package extract
 import (
     "strings"
     "strconv"
+    "app/pkg/clean"
+    "app/pkg/validate"
 )
 //informa o tipo do item 
 type Item struct {
@@ -23,24 +25,26 @@ func convertStringToBool(s string) bool{
     result, _ := strconv.ParseBool(s)
     return result
 }
+
 //faz o split, covertendo o espaço para;
 func standardizeSpaces(s string) []string {
     return strings.Split(strings.Join(strings.Fields(s), ";"), ";")
 }
 
+//faz sepação dos dados em propriedades correspondentes.
 func sanitize(data []string) Item {
     return Item{
-        Cpf: data[0],
-        IsValidCpf: false,
+        Cpf: clean.CleanCpf(data[0]),
+        IsValidCpf: validate.IsValidCpf(data[0]),
         Private: convertStringToBool(data[1]),
         Incomplete: convertStringToBool(data[2]),
         LastBuyDate: data[3],
         AverageTicket: data[4],
         LastBuyTicket: data[5],
-        OftenStore: data[6],
-        IsValidOftenStore: false,
-        LastBuyStore: data[7],
-        IsValidLastStore: false,
+        OftenStore: clean.CleanCnpj(data[6]),
+        IsValidOftenStore: validate.IsValidCnpj(data[6]),
+        LastBuyStore: clean.CleanCnpj(data[7]),
+        IsValidLastStore: validate.IsValidCnpj(data[7]),
     }
 }
 
