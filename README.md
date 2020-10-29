@@ -2,6 +2,8 @@
 
 ## Instruction
 
+* In the terminal inside the folder where you downloaded the project you should run:
+
 `docker-compose build && docker-compose up`
 
 ## Usage
